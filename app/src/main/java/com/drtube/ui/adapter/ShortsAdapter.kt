@@ -34,6 +34,7 @@ class ShortsAdapter(
     private val auth: FirebaseAuth,
     private val scope: CoroutineScope
 ) : RecyclerView.Adapter<ShortsAdapter.ShortsViewHolder>() {
+    // Shorts adapter implementation with dislike support
 
     class ShortsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val playerView: PlayerView = itemView.findViewById(R.id.pv_shorts)
