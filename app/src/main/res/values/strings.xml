@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KuctireTube</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
+    <string name="more">More</string>
+</resources>

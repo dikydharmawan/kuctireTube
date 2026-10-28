@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    android:paddingStart="48dp"
+    android:paddingEnd="48dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
+
+    <!-- Video Preview -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:background="@drawable/bg_tv_card_focus">
+
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contentDescription="Thumbnail"
+            android:focusable="true"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/iv_play_overlay"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_play_overlay"
+            android:clickable="true"
+            android:contentDescription="Putar video"
+            android:focusable="true"
+            android:padding="24dp"
+            android:src="@android:drawable/ic_media_play"
+            android:tint="@android:color/white" />
+
+    </FrameLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Video Title"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- Channel + Actions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_channel_avatar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="#272727"
+            android:clickable="true"
+            android:contentDescription="Channel avatar"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_channel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Channel Name"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_metadata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="1.2M views • 2 days ago"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:backgroundTint="#FF0000"
+            android:focusable="true"
+            android:paddingStart="28dp"
+            android:paddingEnd="28dp"
+            android:text="PUTAR"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_favorite"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:focusable="true"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="SIMPAN"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:strokeColor="#AAAAAA" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_subscribe"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:focusable="true"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="Subscribe"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:strokeColor="#AAAAAA" />
+
+    <Button
+        android:id="@+id/btn_info"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:text="Deskripsi dan Komentar"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:strokeColor="#AAAAAA" />
+    </LinearLayout>
+
+    <!-- Up Next -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Video Lainnya"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tv_related"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="afterDescendants"
+        android:nextFocusUp="@id/btn_play"
+        android:nextFocusDown="@id/rv_tv_related" />
+
+</LinearLayout>

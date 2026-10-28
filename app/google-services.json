@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661038774629",
+    "project_id": "drtube-86b42",
+    "storage_bucket": "drtube-86b42.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661038774629:android:eb663ea84c9206885f498c",
+        "android_client_info": {
+          "package_name": "com.drtube"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9glctxMJsiIdQOpCm6hUD8VNWcgKOgkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
