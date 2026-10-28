@@ -28,6 +28,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class VideoDetailsFragment : Fragment() {
+    // Video details fragment with grid layout for related videos
 
     @Inject
     lateinit var repository: VideoRepository
