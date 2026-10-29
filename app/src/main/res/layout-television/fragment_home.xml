@@ -14,14 +14,14 @@
         android:layout_height="64dp"
         android:background="@android:color/black">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:text="KuctireTube TV"
-            android:textColor="#FF0000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/logo_kuctiretube"
+            android:contentDescription="@string/app_name" />
 
         <LinearLayout
             android:layout_width="wrap_content"
