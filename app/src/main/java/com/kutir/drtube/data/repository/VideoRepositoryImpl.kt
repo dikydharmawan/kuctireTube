@@ -447,13 +447,57 @@ class VideoRepositoryImpl @Inject constructor(
         }
     }
 
+    private val fallbackShorts: List<Video> = listOf(
+        Video(
+            id = "sample_shorts_1",
+            title = "Amazing Nature Short #shorts",
+            description = "Beautiful nature view in vertical format.",
+            thumbnailUrl = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
+            streamUrl = sampleStreamUrl,
+            channelTitle = "Nature Shorts",
+            viewsCount = "120 rb tayangan",
+            publishedAt = "1 hari lalu"
+        ),
+        Video(
+            id = "sample_shorts_2",
+            title = "Coding Tips in 60 Seconds #shorts",
+            description = "Quick programming tip for developers.",
+            thumbnailUrl = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800",
+            streamUrl = sampleStreamUrl,
+            channelTitle = "Code Master",
+            viewsCount = "45 rb tayangan",
+            publishedAt = "3 hari lalu"
+        ),
+        Video(
+            id = "sample_shorts_3",
+            title = "Satisfying Animation #shorts",
+            description = "Smooth looping animation.",
+            thumbnailUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800",
+            streamUrl = sampleStreamUrl,
+            channelTitle = "Motion Art",
+            viewsCount = "230 rb tayangan",
+            publishedAt = "5 hari lalu"
+        ),
+        Video(
+            id = "sample_shorts_4",
+            title = "Lofi Chill Beat #shorts",
+            description = "Relaxing music snippet.",
+            thumbnailUrl = "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
+            streamUrl = sampleStreamUrl,
+            channelTitle = "Lofi Vibes",
+            viewsCount = "500 rb tayangan",
+            publishedAt = "1 minggu lalu"
+        )
+    )
+
     override suspend fun getShorts(): Result<List<Video>> = withContext(Dispatchers.IO) {
         runCatching {
             shortsCache
                 ?.takeIf { isFresh(it.timestamp, SEARCH_CACHE_TTL_MS) }
                 ?.let { return@runCatching it.value }
 
-            val shorts = fetchYoutubeShorts().ifEmpty { searchPipedShorts() }
+            val fetched = fetchYoutubeShorts().ifEmpty { searchPipedShorts() }
+            val shorts = (fetched + fallbackShorts).distinctBy { it.id }
             if (shorts.isNotEmpty()) {
                 shortsCache = CacheEntry(System.currentTimeMillis(), shorts)
             }

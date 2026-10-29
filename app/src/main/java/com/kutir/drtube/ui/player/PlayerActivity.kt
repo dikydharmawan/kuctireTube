@@ -318,6 +318,11 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         subscribeButton?.setOnClickListener {
+            if (auth.currentUser == null) {
+                Toast.makeText(this, "Masuk dulu untuk berlangganan", Toast.LENGTH_SHORT).show()
+                authLauncher.launch(Intent(this, AuthActivity::class.java))
+                return@setOnClickListener
+            }
             val token = com.kutir.drtube.data.local.AuthSession.youtubeAccessToken
             lifecycleScope.launch {
                 if (isSubscribedState) {
@@ -371,6 +376,11 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
         likeButton?.setOnClickListener {
+            if (auth.currentUser == null) {
+                Toast.makeText(this, "Masuk dulu untuk menyukai video", Toast.LENGTH_SHORT).show()
+                authLauncher.launch(Intent(this, AuthActivity::class.java))
+                return@setOnClickListener
+            }
             val token = com.kutir.drtube.data.local.AuthSession.youtubeAccessToken
             if (liked) {
                 liked = false

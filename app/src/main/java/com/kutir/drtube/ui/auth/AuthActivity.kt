@@ -196,11 +196,17 @@ class AuthActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val googleAccount = account.account
-                    ?: throw IllegalStateException("Akun Google tidak tersedia")
-                val accessToken = withContext(Dispatchers.IO) {
-                    GoogleAuthUtil.getToken(this@AuthActivity, googleAccount, YOUTUBE_SCOPE)
+                val accessToken = if (googleAccount != null) {
+                    withContext(Dispatchers.IO) {
+                        runCatching {
+                            GoogleAuthUtil.getToken(this@AuthActivity, googleAccount, YOUTUBE_SCOPE)
+                        }.getOrNull()
+                    }
+                } else null
+
+                if (!accessToken.isNullOrBlank()) {
+                    AuthSession.youtubeAccessToken = accessToken
                 }
-                AuthSession.youtubeAccessToken = accessToken
                 val credential = GoogleAuthProvider.getCredential(account.idToken, accessToken)
                 auth.signInWithCredential(credential)
                     .addOnCompleteListener { result ->
@@ -209,11 +215,25 @@ class AuthActivity : AppCompatActivity() {
                         if (result.isSuccessful) {
                             finishSuccess()
                         } else {
-                            showError(
-                                "Google berhasil, tetapi Firebase menolak kredensial. " +
-                                    "Aktifkan provider Google di Firebase Console.\n" +
-                                    (result.exception?.message ?: "")
-                            )
+                            // Fallback: sign in with idToken alone if accessToken failed
+                            if (accessToken != null) {
+                                val fallbackCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+                                auth.signInWithCredential(fallbackCredential).addOnCompleteListener { fbResult ->
+                                    if (fbResult.isSuccessful) {
+                                        finishSuccess()
+                                    } else {
+                                        showError(
+                                            "Gagal masuk ke Firebase: " + (fbResult.exception?.message ?: "Unknown error")
+                                        )
+                                    }
+                                }
+                            } else {
+                                showError(
+                                    "Google berhasil, tetapi Firebase menolak kredensial. " +
+                                        "Aktifkan provider Google di Firebase Console.\n" +
+                                        (result.exception?.message ?: "")
+                                )
+                            }
                         }
                     }
             } catch (e: UserRecoverableAuthException) {
@@ -223,14 +243,28 @@ class AuthActivity : AppCompatActivity() {
                     recoveryLauncher.launch(intent)
                 } else {
                     showLoading(false)
-                    showError("Izin YouTube diperlukan untuk bisa berkomentar")
+                    // Proceed with ID token even if recoverable auth exception occurs
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    auth.signInWithCredential(credential).addOnCompleteListener { result ->
+                        showLoading(false)
+                        if (result.isSuccessful) finishSuccess()
+                        else showError("Gagal masuk dengan Google")
+                    }
                 }
             } catch (e: Exception) {
                 showLoading(false)
-                showError(
-                    "Gagal masuk dengan Google. Pastikan OAuth client Android " +
-                        "(SHA-1 debug) terdaftar di Firebase/Google Cloud.\n${e.message}"
-                )
+                // Fallback attempt with idToken only
+                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                auth.signInWithCredential(credential).addOnCompleteListener { result ->
+                    if (result.isSuccessful) {
+                        finishSuccess()
+                    } else {
+                        showError(
+                            "Gagal masuk dengan Google. Pastikan OAuth client Android " +
+                                "(SHA-1) terdaftar di Firebase.\n${e.message}"
+                        )
+                    }
+                }
             }
         }
     }
