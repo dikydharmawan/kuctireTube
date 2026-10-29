@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "661038774629-0otdsk6k13adv8ptfln6slj69t96v2ut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kutir.drtube",
+            "certificate_hash": "079e71564c201193641ec42342fd7f3f9f162be8"
+          }
+        },
+        {
           "client_id": "661038774629-bnqpeeha4pau8jsi9v6uav8gbvmbbail.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
