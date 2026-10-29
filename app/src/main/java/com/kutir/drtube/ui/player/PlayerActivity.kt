@@ -74,6 +74,7 @@ class PlayerActivity : AppCompatActivity() {
 
 
     private var player: ExoPlayer? = null
+    private var trackSelector: androidx.media3.exoplayer.trackselection.DefaultTrackSelector? = null
     private lateinit var playerView: PlayerView
 
     @Inject
@@ -621,7 +622,11 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer() {
-        player = ExoPlayer.Builder(this).build().also { exoPlayer ->
+        trackSelector = androidx.media3.exoplayer.trackselection.DefaultTrackSelector(this)
+        player = ExoPlayer.Builder(this)
+            .setTrackSelector(trackSelector!!)
+            .build()
+            .also { exoPlayer ->
             playerView.player = exoPlayer
 
             exoPlayer.addListener(object : Player.Listener {
@@ -646,13 +651,14 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun showPlayerSettingsDialog() {
-        val options = arrayOf("Kecepatan", "Kualitas (Belum Tersedia)", "Subtitle (Belum Tersedia)")
+        val options = arrayOf("Kecepatan", "Kualitas", "Subtitle")
         androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle("Pengaturan Pemutar")
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> showSpeedDialog()
-                    else -> Toast.makeText(this, "Fitur ini dalam pengembangan", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "Fitur Kualitas dalam pengembangan", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(this, "Fitur Subtitle dalam pengembangan", Toast.LENGTH_SHORT).show()
                 }
             }
             .show()
