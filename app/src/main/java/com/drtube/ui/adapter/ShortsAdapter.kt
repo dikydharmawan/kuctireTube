@@ -81,8 +81,8 @@ class ShortsAdapter(
         Glide.with(context)
             .load(video.channelAvatarUrl.ifBlank { null })
             .circleCrop()
-            .placeholder(R.drawable.ic_launcher)
-            .error(R.drawable.ic_launcher)
+            .placeholder(R.drawable.logo_kuctiretube)
+            .error(R.drawable.logo_kuctiretube)
             .into(holder.ivAvatar)
 
         var liked = false

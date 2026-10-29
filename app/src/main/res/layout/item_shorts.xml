@@ -37,7 +37,7 @@
                 android:background="#272727"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/logo_kuctiretube" />
 
             <TextView
                 android:id="@+id/tv_shorts_channel"

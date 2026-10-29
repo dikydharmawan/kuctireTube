@@ -25,29 +25,15 @@
             android:src="@drawable/ic_close_thin"
             android:tint="#FFFFFF" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="56dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kuctire"
-                android:textColor="#FFD700"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tube"
-                android:textColor="#FFFFFF"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_kuctiretube"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/tv_auth_title"
