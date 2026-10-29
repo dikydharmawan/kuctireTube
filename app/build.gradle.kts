@@ -17,11 +17,11 @@ val localProperties = Properties().apply {
 }
 
 android {
-    namespace = "com.kutir.drtube"
+    namespace = "com.drtube"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kutir.drtube"
+        applicationId = "com.drtube"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
