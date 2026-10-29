@@ -132,17 +132,6 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_about"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:text="Tentang Aplikasi"
-                android:textColor="#AAAAAA" />
-
         </LinearLayout>
 
     </ScrollView>

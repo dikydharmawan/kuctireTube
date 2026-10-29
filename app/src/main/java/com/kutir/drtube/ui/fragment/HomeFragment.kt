@@ -88,6 +88,14 @@ class HomeFragment : Fragment() {
             )
         }
 
+        view.findViewById<View>(R.id.btn_info).setOnClickListener {
+            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Tentang KuctireTube")
+                .setMessage("KuctireTube (DRTUBE)\nVersi 1.0.0\n\nDibuat oleh: Ahmad Diky Dharmawan\n\nKuctireTube adalah aplikasi klien YouTube modern untuk Android & Android TV. Nikmati tontonan YouTube tanpa iklan, penjelajahan video yang mulus, dukungan Shorts, manajemen langganan, serta pemutaran video yang dioptimalkan.")
+                .setPositiveButton("Tutup", null)
+                .show()
+        }
+
         observeViewModel()
     }
 

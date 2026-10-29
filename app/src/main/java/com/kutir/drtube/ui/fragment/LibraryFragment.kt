@@ -91,14 +91,6 @@ class LibraryFragment : Fragment() {
                 loadLibrary()
             }
         }
-
-        view.findViewById<View>(R.id.btn_about).setOnClickListener {
-            androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setTitle("Tentang KuctireTube")
-                .setMessage("KuctireTube (DRTUBE)\nVersi 1.0.0\n\nAplikasi klien YouTube modern untuk Android & Android TV yang mendukung penjelajahan video, Shorts, langganan, dan pemutaran video berkecepatan tinggi.")
-                .setPositiveButton("Tutup", null)
-                .show()
-        }
     }
 
     override fun onResume() {
