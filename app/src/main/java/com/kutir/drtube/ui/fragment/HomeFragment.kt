@@ -57,6 +57,7 @@ class HomeFragment : Fragment() {
             }
             startActivity(intent)
         }
+        feedAdapter.setTelevision(requireContext().isTelevision())
         recyclerView.adapter = feedAdapter
 
         val chipGroup = view.findViewById<ChipGroup>(R.id.chip_group)

@@ -16,6 +16,11 @@ class VideoFeedAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var useHorizontalItem: Boolean = false
+    private var isTelevision: Boolean = false
+
+    fun setTelevision(isTv: Boolean) {
+        this.isTelevision = isTv
+    }
 
     constructor(items: List<Any>, useHorizontalItem: Boolean, onVideoClick: (Video) -> Unit) : this(items, onVideoClick) {
         this.useHorizontalItem = useHorizontalItem
@@ -68,8 +73,8 @@ class VideoFeedAdapter(
                 .error(R.drawable.ic_launcher)
                 .into(holder.ivChannelAvatar)
             holder.itemView.isClickable = true
-            holder.itemView.isFocusable = true
-            holder.itemView.isFocusableInTouchMode = true
+            holder.itemView.isFocusable = isTelevision
+            holder.itemView.isFocusableInTouchMode = isTelevision
             holder.itemView.setOnClickListener { onVideoClick(video) }
         } else if (holder is VideoHorizontalViewHolder) {
             val video = items[position] as Video
@@ -79,8 +84,8 @@ class VideoFeedAdapter(
             holder.tvDuration.visibility = if (video.duration.isBlank()) View.GONE else View.VISIBLE
             Glide.with(holder.itemView.context).load(video.thumbnailUrl).into(holder.ivThumbnail)
             holder.itemView.isClickable = true
-            holder.itemView.isFocusable = true
-            holder.itemView.isFocusableInTouchMode = true
+            holder.itemView.isFocusable = isTelevision
+            holder.itemView.isFocusableInTouchMode = isTelevision
             holder.itemView.setOnClickListener { onVideoClick(video) }
         }
     }
