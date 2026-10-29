@@ -129,6 +129,19 @@
             android:textSize="15sp" />
 
         <ImageButton
+            android:id="@+id/btn_player_settings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="12dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Pengaturan"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_manage"
+            android:tint="@android:color/white" />
+
+        <ImageButton
             android:id="@id/exo_fullscreen"
             android:layout_width="36dp"
             android:layout_height="36dp"

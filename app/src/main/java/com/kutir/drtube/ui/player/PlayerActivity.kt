@@ -74,6 +74,7 @@ class PlayerActivity : AppCompatActivity() {
 
 
     private var player: ExoPlayer? = null
+    private var trackSelector: androidx.media3.exoplayer.trackselection.DefaultTrackSelector? = null
     private lateinit var playerView: PlayerView
 
     @Inject
@@ -216,6 +217,11 @@ class PlayerActivity : AppCompatActivity() {
         val dislikeButton = findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_dislike)
         val shareButton = findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_share)
         val notificationsButton = findViewById<ImageView>(R.id.btn_notifications)
+        val settingsButton = findViewById<View>(R.id.btn_player_settings)
+
+        settingsButton?.setOnClickListener {
+            showPlayerSettingsDialog()
+        }
 
         likeButton?.text = formatRealisticLikes(v.viewsCount)
 
@@ -616,7 +622,11 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer() {
-        player = ExoPlayer.Builder(this).build().also { exoPlayer ->
+        trackSelector = androidx.media3.exoplayer.trackselection.DefaultTrackSelector(this)
+        player = ExoPlayer.Builder(this)
+            .setTrackSelector(trackSelector!!)
+            .build()
+            .also { exoPlayer ->
             playerView.player = exoPlayer
 
             exoPlayer.addListener(object : Player.Listener {
@@ -638,6 +648,31 @@ class PlayerActivity : AppCompatActivity() {
 
             loadStreamAndPlay(exoPlayer)
         }
+    }
+
+    private fun showPlayerSettingsDialog() {
+        val options = arrayOf("Kecepatan", "Kualitas", "Subtitle")
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Pengaturan Pemutar")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> showSpeedDialog()
+                    1 -> Toast.makeText(this, "Fitur Kualitas dalam pengembangan", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(this, "Fitur Subtitle dalam pengembangan", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .show()
+    }
+
+    private fun showSpeedDialog() {
+        val speeds = arrayOf("0.5x", "1.0x", "1.5x", "2.0x")
+        val speedValues = floatArrayOf(0.5f, 1.0f, 1.5f, 2.0f)
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Kecepatan Pemutaran")
+            .setItems(speeds) { _, which ->
+                player?.setPlaybackParameters(androidx.media3.common.PlaybackParameters(speedValues[which]))
+            }
+            .show()
     }
 
     private fun loadStreamAndPlay(exoPlayer: ExoPlayer) {
