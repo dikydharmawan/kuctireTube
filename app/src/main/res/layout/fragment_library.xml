@@ -28,7 +28,7 @@
                     android:id="@+id/iv_profile_avatar"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:background="#272727"
+                    android:background="@drawable/bg_circle"
                     android:contentDescription="Foto profil"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_launcher" />
