@@ -34,7 +34,7 @@
                 android:id="@+id/iv_shorts_avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="#272727"
+                android:background="@drawable/bg_circle"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo_kuctiretube" />

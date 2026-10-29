@@ -9,10 +9,31 @@
       "client_info": {
         "mobilesdk_app_id": "1:661038774629:android:eb663ea84c9206885f498c",
         "android_client_info": {
-          "package_name": "com.drtube"
+          "package_name": "com.kutir.drtube"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "661038774629-0otdsk6k13adv8ptfln6slj69t96v2ut.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kutir.drtube",
+            "certificate_hash": "079e71564c201193641ec42342fd7f3f9f162be8"
+          }
+        },
+        {
+          "client_id": "661038774629-bnqpeeha4pau8jsi9v6uav8gbvmbbail.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kutir.drtube",
+            "certificate_hash": "03430910c9766810bcef0005d0f31ba656a81f70"
+          }
+        },
+        {
+          "client_id": "661038774629-t9k157fe2bkn3anjd1g9ihl0k4948ou7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD9glctxMJsiIdQOpCm6hUD8VNWcgKOgkU"
@@ -20,7 +41,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661038774629-t9k157fe2bkn3anjd1g9ihl0k4948ou7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

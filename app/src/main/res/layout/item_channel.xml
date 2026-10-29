@@ -16,7 +16,7 @@
         android:id="@+id/iv_channel_avatar"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="#272727"
+        android:background="@drawable/bg_circle"
         android:contentDescription="Avatar kanal"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher" />
